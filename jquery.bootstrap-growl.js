@@ -52,7 +52,7 @@
         $alert.css("right", "20px");
     }
     $alert.fadeIn();
-    if (options.delay > 0) {
+    if ((options.delay > 0) && (!options.sticky)) {
       $alert.delay(options.delay).fadeOut(function() {
         return $(this).alert("close");
       });
@@ -71,7 +71,8 @@
     width: 250,
     delay: 4000,
     allow_dismiss: true,
-    stackup_spacing: 10
+    stackup_spacing: 10,
+    sticky: false
   };
 
 }).call(this);
