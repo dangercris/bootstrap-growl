@@ -27,11 +27,15 @@
       return offsetAmount = Math.max(offsetAmount, parseInt($(this).css(options.offset.from)) + $(this).outerHeight() + options.stackup_spacing);
     });
     css = {
-      "position": (options.ele === "body" ? "fixed" : "absolute"),
-      "margin": 0,
+      "position": (options.ele === "body" ? "fixed" : ((options.inline === true ) ? "relative" : "absolute")),
       "z-index": "9999",
       "display": "none"
     };
+
+    if (options.inline === false ) {
+        css["margin"] = 0;
+    }
+
     css[options.offset.from] = offsetAmount + "px";
     $alert.css(css);
     if (options.width !== "auto") {
@@ -63,6 +67,7 @@
   $.bootstrapGrowl.default_options = {
     ele: "body",
     type: "info",
+    inline: false,
     offset: {
       from: "top",
       amount: 20
